@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notification Demo</title>
+</head>
+<body>
+  <button>Start 10-sec Timer</button>
+
+  <script>
+    const button = document.querySelector("button");
+
+    button.addEventListener("click", () => {
+      // Request notification permission
+      Notification.requestPermission().then(perm => {
+        if (perm === "granted") {
+          // Notify after 10 seconds
+          setTimeout(() => {
+            new Notification("Time's Up!", {
+              body: "10 seconds have passed.",
+              icon: "https://via.placeholder.com/100" // Optional: Replace with a relevant icon
+            });
+          }, 10000);
+        } else {
+          // Alert if permission is denied or not granted
+          alert("Notifications are blocked or not granted!");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
